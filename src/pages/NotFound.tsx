@@ -24,7 +24,7 @@ const NotFound = () => {
           alt="Gatinho fofo se aproximando da câmera" 
           className="mx-auto mb-4 w-64 rounded-lg" 
         />
-        <p className="text-xl text-gray-800 mb-4">Calma rapaz, aqui tem segurança</p>
+        <p className="text-xl text-gray-800 mb-4">Vai pra onde?</p>
         <a href="/" className="text-blue-500 hover:text-blue-700 underline">
           Voltar
         </a>
