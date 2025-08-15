@@ -3,13 +3,12 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-
 RUN npm run build
 
+# Estágio de Produção
 FROM nginx:stable-alpine
-
-COPY --from=builder /app/build /usr/share/nginx/html
-
+# Altere 'build' para 'dist' na linha abaixo
+COPY --from=builder /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

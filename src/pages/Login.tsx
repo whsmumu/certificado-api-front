@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { LoginForm } from "@/components/ui/login-form";
 import { toast } from "sonner";
+import api from "@/services/api"; // Importe sua instância do axios
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,21 +12,31 @@ const Login = () => {
     setError("");
 
     try {
-      // Simulate LDAP authentication
-      // Replace this with actual LDAP authentication logic
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // For demo purposes - you can customize the validation logic
-      if (username.toLowerCase() === "admin" && password === "password") {
+    
+      const params = new URLSearchParams();
+      params.append('username', username);
+      params.append('password', password);
+
+      // A URL será '/api/login' por causa do proxy do Nginx
+      const response = await api.post('/login', params, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      });
+
+      if (response.status === 200) {
         toast.success("Login realizado com sucesso!");
-        // Redirect to dashboard or main app
-        console.log("User authenticated:", username);
-      } else {
-        setError("Credenciais inválidas. Verifique seu usuário e senha.");
+  
+        console.log("Usuário autenticado:", username);
+       
       }
-    } catch (err) {
-      setError("Erro ao conectar com o servidor. Tente novamente.");
-      console.error("Login error:", err);
+    } catch (err: any) {
+      if (err.response && err.response.status === 401) {
+        toast.error("Credenciais inválidas.");
+      } else {
+        toast.error("Erro ao conectar com o servidor. Tente novamente.");
+        console.error("Login error:", err);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -33,7 +44,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen">
-      <LoginForm 
+      <LoginForm
         onSubmit={handleLogin}
         isLoading={isLoading}
         error={error}

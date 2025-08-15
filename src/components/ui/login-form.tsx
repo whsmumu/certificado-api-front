@@ -24,24 +24,24 @@ export const LoginForm = ({ onSubmit, isLoading = false, error }: LoginFormProps
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <Card className={cn(
-        "w-full max-w-md glass-card login-fade-in",
-        "border-border/50"
+        "w-full max-w-lg glass-card login-fade-in rounded-3xl", // Largura ajustada e bordas mais redondas
+        "border-border/50" // Opacidade da borda corrigida
       )}>
-        <CardHeader className="space-y-1 text-center">
+        <CardHeader className="space-y-2 text-center p-10 pb-4"> {/* Aumentado espaço e padding */}
           <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-primary/10">
             <LogIn className="w-8 h-8 text-primary" />
           </div>
-          <CardTitle className="text-2xl font-semibold text-foreground">
-            Acesse sua conta
+          <CardTitle className="text-3xl font-bold text-foreground">
+            Certificado Digital Novo 
           </CardTitle>
-          <CardDescription className="text-muted-foreground">
-            Entre com suas credenciais LDAP
+          <CardDescription className="text-muted-foreground pt-1">
+            Entre com suas credenciais do Active Directory
           </CardDescription>
         </CardHeader>
-        
-        <CardContent className="space-y-4">
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
+
+        <CardContent className="px-12 py-10 pt-4"> {/* Padding retangular para harmonia */}
+          <form onSubmit={handleSubmit} className="space-y-6"> {/* Espaço entre campos aumentado */}
+            <div className="space-y-2 text-left"> {/* Alinhamento da Label */}
               <Label htmlFor="username" className="text-sm font-medium text-foreground">
                 Usuário
               </Label>
@@ -54,17 +54,17 @@ export const LoginForm = ({ onSubmit, isLoading = false, error }: LoginFormProps
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   className={cn(
-                    "pl-10 bg-input-bg border-input-border",
-                    "focus:border-input-focus focus:ring-input-focus/20",
-                    "transition-all duration-200"
+                    "pl-10 bg-input-bg border-input-border rounded-md", // Borda consistente
+                    
+                    "transition-all duration-200 h-11" // Altura explícita para consistência
                   )}
                   required
                   disabled={isLoading}
                 />
               </div>
             </div>
-            
-            <div className="space-y-2">
+
+            <div className="space-y-2 text-left"> {/* Alinhamento da Label */}
               <Label htmlFor="password" className="text-sm font-medium text-foreground">
                 Senha
               </Label>
@@ -77,9 +77,9 @@ export const LoginForm = ({ onSubmit, isLoading = false, error }: LoginFormProps
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className={cn(
-                    "pl-10 bg-input-bg border-input-border",
+                    "pl-10 bg-input-bg border-input-border rounded-md", // Borda consistente
                     "focus:border-input-focus focus:ring-input-focus/20",
-                    "transition-all duration-200"
+                    "transition-all duration-200 h-11" // Altura explícita para consistência
                   )}
                   required
                   disabled={isLoading}
@@ -88,16 +88,16 @@ export const LoginForm = ({ onSubmit, isLoading = false, error }: LoginFormProps
             </div>
 
             {error && (
-              <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/20">
+              <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/20 text-left">
                 <p className="text-sm text-destructive font-medium">{error}</p>
               </div>
             )}
-            
+
             <Button
               type="submit"
               className={cn(
-                "w-full bg-primary hover:bg-primary-hover",
-                "text-primary-foreground font-medium",
+                "w-full bg-primary hover:bg-primary-hover rounded-md h-11", // Borda e altura consistentes
+                "text-primary-foreground font-medium text-base",
                 "transition-all duration-200 transform",
                 "hover:scale-[1.02] active:scale-[0.98]",
                 "shadow-lg hover:shadow-xl"
@@ -105,14 +105,14 @@ export const LoginForm = ({ onSubmit, isLoading = false, error }: LoginFormProps
               disabled={isLoading || !username || !password}
             >
               {isLoading ? (
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                  Entrando...
+                <div className="flex items-center justify-center gap-2">
+                  <div className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
+                  <span>Entrando...</span>
                 </div>
               ) : (
-                <div className="flex items-center gap-2">
-                  <LogIn className="w-4 h-4" />
-                  Entrar
+                <div className="flex items-center justify-center gap-2">
+                  <LogIn className="w-5 h-5" />
+                  <span>Entrar</span>
                 </div>
               )}
             </Button>
