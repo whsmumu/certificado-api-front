@@ -10,13 +10,11 @@ All colors MUST be HSL.
   :root {
     /* Background gradients - white, blue, red */
     --background: 0 0% 100%;
-    --background-gradient: linear-gradient(135deg, 0 0% 98%, 220 80% 60%, 0 85% 65%);
     --foreground: 220 13% 18%;
 
     /* Card system */
     --card: 0 0% 100%;
     --card-foreground: 220 13% 18%;
-    --card-glass: 0 0% 100% / 0.8;
 
     --popover: 0 0% 100%;
     --popover-foreground: 220 13% 18%;
@@ -53,19 +51,12 @@ All colors MUST be HSL.
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -106,7 +97,6 @@ All colors MUST be HSL.
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
-  
 }
 
 @layer base {
@@ -115,7 +105,7 @@ All colors MUST be HSL.
   }
 
   body {
-    background: url('/lovable-uploads/53491ce0-9f80-40b2-991a-300ec1147758.png');
+    background: url('/lovable-uploads/gradient.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -124,12 +114,10 @@ All colors MUST be HSL.
     position: relative;
   }
 
-
-  /* Glass morphism effect */
-  .glass-card {
-    background: hsl(var(--card-glass));
-    backdrop-filter: blur(12px);
-    border: 1px solid hsl(var(--border));
+  /* Estilo do card de formulário com borda fina */
+  .form-card {
+    background: hsl(var(--card)); /* Fundo sólido usando a variável --card */
+    border: 1px solid hsl(var(--border)); /* Borda fina usando a variável --border */
     box-shadow: 
       0 8px 32px hsl(220 15% 50% / 0.1),
       0 1px 3px hsl(220 15% 50% / 0.1);
